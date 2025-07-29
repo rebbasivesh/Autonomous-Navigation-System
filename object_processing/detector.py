@@ -22,9 +22,13 @@ class Detector:
         Args:
             frame: The input video frame.
         Returns:
-            A list of `ultralytics.engine.results.Boxes` objects for
-            the detected vehicles.
+            An `ultralytics.engine.results.Boxes` object containing the
+            filtered detections.
         """
-        results = self.model(frame, verbose=False)[0]
-        detections = [res for res in results.boxes if res.cls[0] in self.target_classes and res.conf[0] > self.conf_threshold]
-        return detections
+        results = self.model(
+            frame,
+            classes=self.target_classes,
+            conf=self.conf_threshold,
+            verbose=False
+        )[0]
+        return results.boxes

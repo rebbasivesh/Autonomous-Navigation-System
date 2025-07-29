@@ -80,8 +80,16 @@ class EKFTracker:
             track_pred_bboxes_xyxy[:, 2] += track_pred_bboxes_xyxy[:, 0]
             track_pred_bboxes_xyxy[:, 3] += track_pred_bboxes_xyxy[:, 1]
 
-            det_bboxes_xywh = np.array([d.xywh[0] for d in detections])
-            det_bboxes_xyxy = np.array([d.xyxy[0] for d in detections])
+            # Properly extract bounding boxes ensuring consistent shape and type
+            if detections.xywh.numel() > 0:
+                det_bboxes_xywh = detections.xywh.cpu().numpy()
+                det_bboxes_xyxy = detections.xyxy.cpu().numpy()
+            else:
+                det_bboxes_xywh = np.empty((0, 4), dtype=np.float32)
+                det_bboxes_xyxy = np.empty((0, 4), dtype=np.float32)
+
+            # Ensure the shape of bboxes are (n,4)
+            assert det_bboxes_xywh.ndim == 2 and det_bboxes_xywh.shape[1] == 4, f"Unexpected shape for det_bboxes_xywh: {det_bboxes_xywh.shape}"
 
             iou_matrix = np.zeros((len(detections), len(self.tracks)), dtype=np.float32)
             for d, det_box in enumerate(det_bboxes_xyxy):

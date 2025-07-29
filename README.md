@@ -2,7 +2,7 @@
 
 This project is a Python-based simulation of an autonomous vehicle's perception and path-planning system. It processes a forward-facing dashcam video to detect and track other vehicles, transform the scene into a top-down Bird's-Eye View (BEV), and plan a safe path that avoids collisions.
 
-![Example Output](https://user-images.githubusercontent.com/26833433/238137335-c5013219-9194-4775-a035-4f401353aa05.gif)
+![Example Output](https://github.com/user-attachments/assets/93521a1a-a6ba-4b96-9efb-2f5d4e285db9)
 *(Note: The GIF above is an example of the expected output.)*
 
 ---

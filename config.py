@@ -21,10 +21,10 @@ VIDEO_HEIGHT = 720
 # Format: [top-left, top-right, bottom-right, bottom-left]
 # These points have been adjusted for the new video from archive.org.
 SRC_POINTS = np.float32([
-    [580, 470],  # Top-left
-    [710, 470],  # Top-right
-    [1150, 720], # Bottom-right
-    [250, 720]   # Bottom-left
+    [542, 383],  # Top-left
+    [753, 382],  # Top-right
+    [930, 550], # Bottom-right
+    [404, 550]   # Bottom-left
 ])
 
 # Destination points in the bird's-eye view (a rectangle)
